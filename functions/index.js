@@ -1,19 +1,30 @@
 const functions = require("firebase-functions");
+const firebase = require("firebase");
 const admin = require("firebase-admin");
-const express = require("express");
+const app = require("express")();
+const serviceAccount = require("./digibook-project-firebase.json");
 
-const app = express();
+const config = {
+	apiKey: "AIzaSyDYk6Is06YLQvQIm8bwVn9KsNBeayP8yr4",
+	authDomain: "digibook-project.firebaseapp.com",
+	databaseURL: "https://digibook-project.firebaseio.com",
+	projectId: "digibook-project",
+	storageBucket: "digibook-project.appspot.com",
+	messagingSenderId: "471922748473",
+	appId: "1:471922748473:web:f0d24ff782227c203db1e8"
+};
 
-var serviceAccount = require("./digibook-project-firebase.json");
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
 	databaseURL: "https://digibook-project.firebaseio.com"
 });
 
+firebase.initializeApp(config);
+
+const db = admin.firestore();
+
 app.get("/posts", (req, res) => {
-	admin
-		.firestore()
-		.collection(`posts`)
+	db.collection(`posts`)
 		.orderBy("createdAt", "desc")
 		.get()
 		.then(data => {
@@ -38,9 +49,7 @@ app.post("/post", (req, res) => {
 		createdAt: new Date().toISOString()
 	};
 
-	admin
-		.firestore()
-		.collection(`posts`)
+	db.collection(`posts`)
 		.add(newPost)
 		.then(doc => {
 			res.json({ message: `document ${doc.id} created successfully` });
@@ -48,6 +57,54 @@ app.post("/post", (req, res) => {
 		.catch(err => {
 			res.status(500).json({ error: "something went wrong" });
 			console.log(err);
+		});
+});
+
+//Signup route
+app.post("/signup", (req, res) => {
+	const newUser = {
+		email: req.body.email,
+		password: req.body.password,
+		confirmPassword: req.body.confirmPassword,
+		handle: req.body.handle
+	};
+
+	let token, userId;
+	db.doc(`/users/${newUser.handle}`)
+		.get()
+		.then(doc => {
+			if (doc.exists) {
+				return res.status(400).json({
+					handle: `this handle is already taken`
+				});
+			} else {
+				return firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password);
+			}
+		})
+		.then(data => {
+			userId = data.user.uid;
+			return data.user.getIdToken();
+		})
+		.then(idToken => {
+			token = idToken;
+			const userCredentials = {
+				handle: newUser.handle,
+				email: newUser.email,
+				createdAt: new Date().toISOString(),
+				userId
+			};
+			return db.doc(`/users/${newUser.handle}`).set(userCredentials);
+		})
+		.then(() => {
+			return res.status(201).json({ token });
+		})
+		.catch(err => {
+			console.error(err);
+			if (err.code === "auth/email-already-in-use") {
+				return res.status(400).json({ email: `Email is already in use` });
+			} else {
+				return res.status(500).json({ error: err.code });
+			}
 		});
 });
 
