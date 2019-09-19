@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "digibook-project",
+  "private_key_id": "da231f165ec0111e72bbb4ed5250875a72bb8e64",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCesqi+7oTzn4ZA\nqANGtIOPq1+c4h0AvNr+Ft5Bpo84S45HsTx1CeY7BZrLbSLGRFZ3FNc5clcdG8/2\n/fOMPPlXXvZAv/S7CwhBNyCKnXgPkKSKoZOaDQxhk2QrVpaxU1IpOTUiPtStJ07+\n84NKEVpkrbCK2IkMXbLZJ+l+reFnQDcPHB6dUG+9e+xBBgddvQmI8uodxv9KAMk8\njzHgbojl85Pohh2b4OULrThAPcl/ztqKm0bJR3PLiPAHwef7TNh3buTGnolpkxtd\nvs/kgS7yRIdC5ib73eSOXdwndZ82TPLDMIfSnB4gdyYAaq94AIdwHLYzZLFqZ0to\nFhX4ir5XAgMBAAECggEAE5V5lIJLvuK/RwhUyytoltivpmUS7i3gGn4I9HIQ94H/\nb2J0Uv8jPcJdzV/M7Emvn+de/fRZwrpVaiYBoZs+q+UIn4nwsgpU/PNIHUL8d3NC\nkucIl3inv/zX3i9DzmM5XuPz5iN5zFpu+bBkUcYdcRIsGJ5LH08KzJiLzHm5uKt2\nt+o+kz6p5mk6qcFqmzCgHK48x/U+zwlthbk6DRSPHIoUwJhx8kAsE3qE5aOmIS5j\nS7wav26YUeLfuf3g4UlxvAYT9GIeoNVqrB+zmamTAOuDIugBYoP0Jxm1JXJDaCAI\nual+e2dh+oCu/BLaFmA1HgCNiVl28Wkb/ADKGVInDQKBgQDRJ/m0Uch1RAQClmZb\nZljbSrrJfSXyG6FUCUfiFJ82peI2MByPEBMGumr2G026Yx9fiqVW6Sad9DTUxzY/\nyuzi731wxBdbv5IRnMktd4KKBcSTdjK6zc1GqrSmZiERKzssJIDX1R/KwIpdzJ9c\nAdZ6uDZJ42DSYABUINUyU6P7SwKBgQDCPaU5jG4AfIDKD4iRoIaoar68hCPOCeqC\n0o1yoyGZZ6URutfqmt4cv+7q+wbTTr7RRLM2HTWPgcs7XoClQXkzy4equYQnsuW4\nf0gqJUsZRHsjoY1hn2wXQ5eaSGJQJdWne27O93W6xoJ9MMbHUrPi5aZ3JCikySl/\nYtTBtTH1pQKBgQCmjCiAd+chyalPzidvfI4hAN6/9xGyOmI6orFEy5sETw9UivcS\nzH/6CZOGqbM5Shj/YU3LaRjBCmbPUFpYbeQ3yPCgTOU0v9U2hRyFQfcGpRUlPyei\nLKLbNK9pGUYXf888lUyrkSAhuTP1AS2cfDInwmwoZhEBNETOuN5LluKrBQKBgAbg\nR8kRv5Mk1SpSAnOlSx8LKFVkGCBjGXooGfnE7JuRn7ZQ9vPHJ7W81ahb2pIAZ6Dg\n3bc8sXizD466ebNf7fp3agYRKyx8mMU/PD7BszbhxbotLeQW0KzCJ8u+ZDySGk4j\ngHizKefCvzvPTjogI14U4x+0l/u9Y0qvJPj2gR5BAoGBAKo5oIg5Nn0jwpYQPd7X\nRjJgbFiUCtbzo8hiAGqi47Kz9Pz0lb/jcZh6OS+4nOE8/Xj/IiVFlstWQZ9t84b9\nweVeUHr43ECXaKNAz6jYGyRBqRF9Xv2X7aIkPEBvFmbJ3AeU8Fp40qpEQkHQmU8p\n7nV+q2JUN+bhE5+Pns7+WMkp\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-12xl6@digibook-project.iam.gserviceaccount.com",
+  "client_id": "105794581382023523194",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-12xl6%40digibook-project.iam.gserviceaccount.com"
+}
