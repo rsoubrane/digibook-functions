@@ -1,5 +1,6 @@
 const { db } = require("../utils/admin");
 
+//Fetch all the posts
 exports.getAllPosts = (req, res) => {
 	db.collection(`posts`)
 		.orderBy("createdAt", "desc")
@@ -20,33 +21,6 @@ exports.getAllPosts = (req, res) => {
 			return res.json(posts);
 		})
 		.catch(err => console.log(err));
-};
-
-exports.postOnePost = (req, res) => {
-	if (req.body.body.trim() === "") {
-		return res.status(400).json({ body: "Body must not be empty" });
-	}
-
-	const newPost = {
-		body: req.body.body,
-		userHandle: req.user.handle,
-		userImage: req.user.imageUrl,
-		createdAt: new Date().toISOString(),
-		likeCount: 0,
-		commentCount: 0
-	};
-
-	db.collection(`posts`)
-		.add(newPost)
-		.then(doc => {
-			const resPost = newPost;
-			resPost.postId = doc.id;
-			res.json(resPost);
-		})
-		.catch(err => {
-			res.status(500).json({ error: "something went wrong" });
-			console.log(err);
-		});
 };
 
 // Fetch one post
@@ -79,7 +53,35 @@ exports.getPost = (req, res) => {
 		});
 };
 
-// Comment on a comment
+//Publish one post
+exports.postOnePost = (req, res) => {
+	if (req.body.body.trim() === "") {
+		return res.status(400).json({ body: "Body must not be empty" });
+	}
+
+	const newPost = {
+		body: req.body.body,
+		userHandle: req.user.handle,
+		userImage: req.user.imageUrl,
+		createdAt: new Date().toISOString(),
+		likeCount: 0,
+		commentCount: 0
+	};
+
+	db.collection(`posts`)
+		.add(newPost)
+		.then(doc => {
+			const resPost = newPost;
+			resPost.postId = doc.id;
+			res.json(resPost);
+		})
+		.catch(err => {
+			res.status(500).json({ error: "something went wrong" });
+			console.log(err);
+		});
+};
+
+//Comment on a post
 exports.commentOnPost = (req, res) => {
 	if (req.body.body.trim() === "") return res.status(400).json({ comment: "Must not be empty" });
 
@@ -205,7 +207,7 @@ exports.unlikePost = (req, res) => {
 		});
 };
 
-// Delete a post
+//Delete a post
 exports.deletePost = (req, res) => {
 	const document = db.doc(`/posts/${req.params.postId}`);
 	document

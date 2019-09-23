@@ -42,8 +42,10 @@ app.get("/user", FBAuth, getAuthenticatedUser);
 app.get("/user/:handle", getUserDetails);
 app.post("/notifications", FBAuth, markNotificationsRead);
 
+//Make the api accessible
 exports.api = functions.region("europe-west1").https.onRequest(app);
 
+//Trigger a notification on post like
 exports.createNotificationOnLike = functions
 	.region("europe-west1")
 	.firestore.document("likes/{id}")
@@ -66,6 +68,7 @@ exports.createNotificationOnLike = functions
 			.catch(err => console.error(err));
 	});
 
+//Remove notification on post unlike
 exports.deleteNotificationOnUnLike = functions
 	.region("europe-west1")
 	.firestore.document("likes/{id}")
@@ -79,6 +82,7 @@ exports.deleteNotificationOnUnLike = functions
 			});
 	});
 
+//Trigger a notification on post comment
 exports.createNotificationOnComment = functions
 	.region("europe-west1")
 	.firestore.document("comments/{id}")
@@ -104,6 +108,7 @@ exports.createNotificationOnComment = functions
 			});
 	});
 
+//Change the image everywhere
 exports.onUserImageChange = functions
 	.region("europe-west1")
 	.firestore.document("/users/{userId}")
@@ -127,6 +132,7 @@ exports.onUserImageChange = functions
 		} else return true;
 	});
 
+//Remove everything related to a post on delete
 exports.onPostDelete = functions
 	.region("europe-west1")
 	.firestore.document("/posts/{postId}")

@@ -61,7 +61,7 @@ exports.signup = (req, res) => {
 		});
 };
 
-//Log users in
+//Log user in
 exports.login = (req, res) => {
 	const user = {
 		email: req.body.email,
@@ -103,7 +103,7 @@ exports.addUserDetails = (req, res) => {
 		});
 };
 
-// Get any user's details
+//Get any user's details
 exports.getUserDetails = (req, res) => {
 	let userData = {};
 	db.doc(`/users/${req.params.handle}`)
@@ -141,7 +141,7 @@ exports.getUserDetails = (req, res) => {
 		});
 };
 
-// Get own user details
+//Get current user details
 exports.getAuthenticatedUser = (req, res) => {
 	let userData = {};
 	db.doc(`/users/${req.user.handle}`)
